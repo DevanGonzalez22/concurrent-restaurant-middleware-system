@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "RestaurantProto";
+
+package restaurant;
+
+message ProtocolMessage {
+  enum MessageType {
+    REQUEST = 0;
+    RESPONSE = 1;
+    EVENT = 2;
+  }
+
+  enum Role {
+    CUSTOMER = 0;
+    SERVER = 1;
+    MANAGER = 2;
+    CHEF = 3;
+  }
+
+  enum Operation {
+    OP_UNSPECIFIED = 0;
+
+    LOGIN = 1;
+    LOGOUT = 2;
+
+    GET_MENU = 3;
+
+    CREATE_ORDER = 4;
+    ADD_ITEM = 5;
+    SUBMIT_ORDER = 6;
+    GET_TICKETS = 7;
+    CANCEL_ORDER = 8;
+    GET_BILL = 9;
+
+    UPDATE_MENU_ITEM = 10;
+    UPDATE_TICKET_STATUS = 11;
+    GET_PENDING_TICKETS = 12;
+
+    ADD_MENU_ITEM = 13;
+    REMOVE_MENU_ITEM = 14;
+    VIEW_ALL_ORDERS = 15;
+    ASSIGN_TABLE = 16;
+    RETURN_ORDER = 17;
+    GET_SERVER_NOTIFICATIONS = 18;
+
+    RELEASE_TABLE = 19;
+
+    MAKE_RESERVATION = 20;
+    GET_RESERVATIONS = 21;
+    CANCEL_RESERVATION = 22;
+
+    GET_STOCK = 23;
+    UPDATE_STOCK = 24;
+  }
+
+  enum Status {
+    OK = 0;
+    ERROR = 1;
+  }
+
+  string request_id = 1;
+  MessageType message_type = 2;
+  Role role = 3;
+  Operation operation = 4;
+  Status status = 5;
+  map<string, string> data = 6;
+  string message = 7;
+}
